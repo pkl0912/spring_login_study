@@ -26,7 +26,6 @@ public class CookieLoginController {
     private final UserService userService;
 
     @GetMapping(value = {"", "/"})
-
     public String home(@CookieValue(name = "userId", required = false) Long userId, Model model) {
             User loginUser = userService.getLoginUser(userId);
 
