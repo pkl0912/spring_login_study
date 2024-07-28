@@ -53,6 +53,10 @@ public class CookieLoginController {
             if(userService.checkNicknameDuplicate(joinForm.getNickname())) {
                 bindingResult.addError(new FieldError("joinForm", "nickname", "닉네임이 중복됩니다."));
             }
+            // password와 passwordCheck가 같은지 체크
+            if(!joinForm.getPassword().equals(joinForm.getPasswordCheck())) {
+                bindingResult.addError(new FieldError("joinForm", "passwordCheck", "바밀번호가 일치하지 않습니다."));
+            }
 
             if(bindingResult.hasErrors()) {
                 log.info("[JOIN] 회원가입 실패");
