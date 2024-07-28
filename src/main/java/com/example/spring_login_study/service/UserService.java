@@ -1,7 +1,7 @@
 package com.example.spring_login_study.service;
 
-import com.example.spring_login_study.dto.JoinForm;
-import com.example.spring_login_study.dto.LoginForm;
+import com.example.spring_login_study.dto.JoinRequest;
+import com.example.spring_login_study.dto.LoginRequest;
 import com.example.spring_login_study.entity.User;
 import com.example.spring_login_study.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class UserService {
 
 
     // 회원가입 기능 => 화면에서 JoinForm을 입력받아 User로 변환 후 DB에 저장
-    public void join(JoinForm form) {
+    public void join(JoinRequest form) {
         userRepository.save(form.toEntity());
     }
 
@@ -46,7 +46,7 @@ public class UserService {
      *  화면에서 LoginForm(loginId, password)을 입력받아 loginId와 password가 일치하면 User return
      *  loginId가 존재하지 않거나 password가 일치하지 않으면 null return
      */
-    public User login(LoginForm form) {
+    public User login(LoginRequest form) {
         Optional<User> optionalUser = userRepository.findByLoginId(form.getLoginId());
 
         // loginId와 일치하는 User가 없으면 null return
